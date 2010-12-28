@@ -1,4 +1,7 @@
+Gem.clear_paths # needed for Chef to find the gem...
+require 'mysql' # requires the mysql gem
 include_recipe "apt"
+include_recipe "mysql::server"
 package "wget"
 
 user "sonar" do
@@ -43,6 +46,22 @@ cookbook_file "/etc/init.d/sonar" do
   owner "root"
   group "root"
 end
+
+cookbook_file "/home/sonar/#{node[:sonar][:version]}/conf/sonar.properties" do
+  source "sonar.properties"
+  mode 0755
+  owner "sonar"
+end
+
+mysql_database "Create sonar database" do
+  host "localhost"
+  username "root"
+  password node[:mysql][:server_root_password]
+  database "sonar"
+  action :create_db
+end
+
+
 
 service "sonar" do
   supports :status => true, :restart => true, :start => true, :stop => true

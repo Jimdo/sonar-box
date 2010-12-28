@@ -1,4 +1,3 @@
-require_recipe "apt"
 include_recipe "php"
 
 # We want pear 1.9.1 otherwise PHPUnit won't install
