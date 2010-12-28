@@ -33,8 +33,8 @@ execute "Install PHP Plugin" do
   user "sonar"
 end
 
-link "/home/sonar/#{node[:sonar][:version]}/bin/linux-x86-32/sonar.sh" do
-  to "/usr/local/bin/sonar"
+link "/usr/local/bin/sonar" do
+  to "/home/sonar/#{node[:sonar][:version]}/bin/linux-x86-32/sonar.sh"
 end
 
 cookbook_file "/etc/init.d/sonar" do
