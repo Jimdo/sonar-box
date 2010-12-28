@@ -8,6 +8,8 @@ Vagrant::Config.run do |config|
   config.chef.add_recipe("openssl")
   config.chef.add_recipe("build-essential")
   config.chef.add_recipe("mysql::server")
+  config.chef.add_recipe("java")
   config.chef.add_recipe("vagrant_main")
   config.chef.json.merge!({ :mysql => { :server_root_password => "root" } })
+  config.chef.json.merge!({ :mysql => { :bind_address => "0.0.0.0" } })
 end

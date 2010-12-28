@@ -61,8 +61,6 @@ mysql_database "Create sonar database" do
   action :create_db
 end
 
-
-
 service "sonar" do
   supports :status => true, :restart => true, :start => true, :stop => true
   status_command "/etc/init.d/sonar status | grep 'sonar is running'"

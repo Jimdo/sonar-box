@@ -1,7 +1,8 @@
 include_recipe "php"
+include_recipe "php::pear"
 
 # We want pear 1.9.1 otherwise PHPUnit won't install
-execute "pear upgrade pear" do
+execute "pear upgrade" do
   not_if "pear version|grep 'PEAR Version: 1.9.1'"
 end
 
