@@ -1,8 +1,8 @@
 Vagrant::Config.run do |config|
   config.vm.box = "lucid32"
   config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
-  config.vm.forward_port "sonar", 9000, 9000
-  config.vm.forward_port "mysql", 3306, 3306
+  config.vm.forward_port 9000, 9000
+  config.vm.forward_port 3306, 3306
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks"]
     chef.add_recipe("apt")
